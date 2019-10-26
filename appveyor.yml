@@ -1,0 +1,45 @@
+version: '1.11.1-{build}'
+
+environment:
+  matrix:
+  - image: Visual Studio 2015
+    COMPILER_NAME: mingw-w64-8.1.0
+    SCRIPT: build-mingw.bat
+    MINGW_DIR: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin
+    
+  - image: Visual Studio 2015
+    COMPILER_NAME: mingw-w64-7.3.0
+    SCRIPT: build-mingw.bat
+    MINGW_DIR: C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin
+    
+  - image: Visual Studio 2015
+    COMPILER_NAME: mingw-w64-7.2.0
+    SCRIPT: build-mingw.bat
+    MINGW_DIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+    
+  - image: Visual Studio 2015
+    COMPILER_NAME: mingw-w64-6.3.0
+    SCRIPT: build-mingw.bat
+    MINGW_DIR: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin
+    
+  - image: Visual Studio 2015
+    COMPILER_NAME: mingw-32-5.3.0
+    SCRIPT: build-mingw.bat
+    MINGW_DIR: C:\MinGW\bin
+
+init:
+  - cmd: set PATH=%MINGW_DIR%;%PATH%
+  - cmd: echo %PATH%
+  - cmd: dir %MINGW_DIR%
+
+configuration:
+  - Release
+
+build_script:
+  - cmd: call %SCRIPT%
+
+artifacts:
+  - path: taglib*\build\release\taglib-%COMPILER_NAME%.zip
+    name: taglib-%COMPILER_NAME%
+
+

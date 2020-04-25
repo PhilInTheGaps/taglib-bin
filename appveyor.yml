@@ -1,4 +1,4 @@
-version: '1.11.1-{build}'
+version: 'v1.12-beta-1-{build}'
 
 environment:
   matrix:

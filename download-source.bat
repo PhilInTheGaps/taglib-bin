@@ -1,7 +1,10 @@
-echo "Downloading TagLib source ..."
-echo "https://github.com/taglib/taglib/archive/v1.11.1.zip"
+set TAGLIB_VERSION=v1.12-beta-1
 
-curl -L -o taglib.zip -L https://github.com/taglib/taglib/archive/v1.11.1.zip
+echo "Downloading TagLib source ..."
+echo "Taglib version:" %TAGLIB_VERSION%
+echo https://github.com/taglib/taglib/archive/%TAGLIB_VERSION%.zip
+
+curl -L -o taglib.zip https://github.com/taglib/taglib/archive/%TAGLIB_VERSION%.zip
 7z x taglib.zip
 cd taglib*
 
